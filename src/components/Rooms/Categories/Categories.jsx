@@ -1,0 +1,18 @@
+import Container from "../../Shared/Container";
+import { categories } from "./CategoriesData";
+import CategoryBox from "./CategoryBox";
+
+
+const Categories = () => {
+    return (
+        <Container>
+            <div className=" flex items-center pt-4 justify-between overflow-x-auto">
+                {
+                    categories.map(category => <CategoryBox key={category.label} icon={category.icon} label={category.label}></CategoryBox>)
+                }
+            </div>
+        </Container>
+    );
+};
+
+export default Categories;
