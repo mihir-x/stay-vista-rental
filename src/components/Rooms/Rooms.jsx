@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect } from "react";
 import { useState } from "react";
 import Card from "./Card";
@@ -5,6 +6,7 @@ import Container from "../Shared/Container";
 import { useSearchParams } from "react-router-dom";
 import Heading from "../Shared/Heading/Heading";
 import Loader from '../Shared/Loader'
+import { getAllRooms } from "../../api/rooms";
 
 const Rooms = () => {
 
@@ -15,8 +17,7 @@ const Rooms = () => {
 
     useEffect(() => {
         setLoading(true)
-        fetch('/rooms.json')
-            .then(res => res.json())
+        getAllRooms()
             .then(data => {
                 if (selectedCategory) {
                     const filtered = data.filter(item => item.category === selectedCategory)
@@ -28,8 +29,8 @@ const Rooms = () => {
                 setLoading(false)
             })
     }, [selectedCategory])
-    
-    if(loading){
+
+    if (loading) {
         return <Loader></Loader>
     }
 
